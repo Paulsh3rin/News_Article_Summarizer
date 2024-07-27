@@ -1,10 +1,13 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, send_from_directory
 from flask_cors import CORS
-# Import your TextRank summarization function here
-# from summarizer import summarize_article
+from model import perform_summarization  # Import the correct function
 
-app = Flask(__name__)
+app = Flask(__name__, static_url_path='', static_folder='static')
 CORS(app)
+
+@app.route('/')
+def index():
+    return send_from_directory(app.static_folder, 'index.html')
 
 @app.route('/summarize', methods=['POST'])
 def summarize():
@@ -14,13 +17,8 @@ def summarize():
         return jsonify({'error': 'No article text provided'}), 400
     
     # Call your TextRank summarization function
-    summary = summarize_article(article_text)
+    summary = perform_summarization(article_text)
     return jsonify({'summary': summary})
-
-def summarize_article(article):
-    # Dummy summary function for demonstration
-    # Replace this with your actual TextRank summarization logic
-    return "This is a summary of the article."
 
 if __name__ == '__main__':
     app.run(debug=True)
