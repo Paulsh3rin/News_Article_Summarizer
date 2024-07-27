@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Recommendation App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Music Recommendation App</h1>
+    </header>
+    <main>
+        <section id="recommendations">
+            <h2>Recommendations</h2>
+            <ul>
+                <li>
+                    Song A by Artist 1
+                    <button onclick="likeSong('Song A')">Like</button>
+                    <button onclick="dislikeSong('Song A')">Dislike</button>
+                    <button onclick="addToPlaylist('Song A')">Add to Playlist</button>
+                </li>
+                <li>
+                    Song B by Artist 2
+                    <button onclick="likeSong('Song B')">Like</button>
+                    <button onclick="dislikeSong('Song B')">Dislike</button>
+                    <button onclick="addToPlaylist('Song B')">Add to Playlist</button>
+                </li>
+                <li>
+                    Song C by Artist 3
+                    <button onclick="likeSong('Song C')">Like</button>
+                    <button onclick="dislikeSong('Song C')">Dislike</button>
+                    <button onclick="addToPlaylist('Song C')">Add to Playlist</button>
+                </li>
+            </ul>
+        </section>
+        <section id="playlist-history">
+            <h2>Playlist History</h2>
+            <ul id="playlist">
+                <!-- Songs added to playlist will appear here -->
+            </ul>
+        </section>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>
