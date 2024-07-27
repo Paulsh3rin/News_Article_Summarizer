@@ -1,1 +1,2 @@
-# AI_2004_Project
+# News Article Summarization App
+#### *Summarizes News Articles in a few lines*
