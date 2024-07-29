@@ -25,3 +25,8 @@ document.getElementById('summarizeButton').addEventListener('click', async () =>
         alert('There was an error summarizing the article.');
     }
 });
+
+document.getElementById('resetButton').addEventListener('click', () => {
+    document.getElementById('articleInput').value = '';
+    document.getElementById('summaryOutput').innerText = '';
+});
