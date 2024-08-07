@@ -13,12 +13,14 @@ def index():
 def summarize():
     data = request.get_json()
     article_text = data.get('article')
+    
+    #validate input
     if not article_text:
         return jsonify({'error': 'No article text provided'}), 400
     
-    # Call your TextRank summarization function
-    summary = perform_summarization(article_text)
-    return jsonify({'summary': summary})
+    # perform summarization and keyword extraction
+    summary, keywords = perform_summarization(article_text)
+    return jsonify({'summary': summary, 'keywords': keywords}), 200
 
 if __name__ == '__main__':
     app.run(debug=True)
