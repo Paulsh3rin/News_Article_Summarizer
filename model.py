@@ -6,8 +6,8 @@ from nltk.corpus import stopwords
 from nltk.tokenize import sent_tokenize, word_tokenize
 
 # Uncomment these lines to download NLTK resources if not already done
-# nltk.download('punkt')
-# nltk.download('stopwords')
+#nltk.download('punkt')
+#nltk.download('stopwords')
 
 def preprocess_text(text):
     stop_words = set(stopwords.words('english'))
@@ -42,5 +42,27 @@ def summarize_text(text, num_sentences=3):
     summary = ' '.join([sentence for score, sentence in ranked_sentences[:num_sentences]])
     return summary
 
+def extract_keywords_tfidf(text, num_keywords=4):
+    stop_words = set(stopwords.words('english'))
+    words = word_tokenize(text.lower())
+    words = [word for word in words if word.isalnum() and word not in stop_words]
+
+    # Use TF-IDF Vectorizer
+    tfidf_vectorizer = TfidfVectorizer()
+    tfidf_matrix = tfidf_vectorizer.fit_transform([' '.join(words)])
+    feature_array = tfidf_vectorizer.get_feature_names_out()
+    
+    # Get the sorted indices of the top keywords
+    sorted_indices = tfidf_matrix.toarray().argsort(axis=1)[0][::-1]
+
+    # Select the top keywords
+    top_keywords = [feature_array[i] for i in sorted_indices[:num_keywords]]
+    hashtags = ['#' + keyword for keyword in top_keywords]
+
+    return hashtags
+
 def perform_summarization(text):
-    return summarize_text(text)
+    summary = summarize_text(text)
+    keywords = extract_keywords_tfidf(text)
+
+    return summary, keywords
