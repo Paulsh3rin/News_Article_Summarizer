@@ -19,9 +19,29 @@ document.getElementById('summarizeButton').addEventListener('click', async () =>
         }
 
         const data = await response.json();
-        document.getElementById('summaryOutput').innerText = data.summary;
+
+        //Display Summary
+        const summaryElement =  document.getElementById('summaryOutput');
+        summaryElement.innerText = ''; //clear previous summary
+        summaryElement.innerText = data.summary;
+
+        // Display the keywords as hashtags
+        const keywordsElement = document.getElementById('keywordsOutput');
+        keywordsElement.innerHTML = ''; // Clear previous keywords
+        data.keywords.forEach(keyword => {
+            const hashtag = document.createElement('span');
+            hashtag.className = 'hashtag';
+            hashtag.innerText = keyword;
+            keywordsElement.appendChild(hashtag);
+        });
     } catch (error) {
         console.error('Error:', error);
         alert('There was an error summarizing the article.');
     }
+});
+
+document.getElementById('resetButton').addEventListener('click', () => {
+    document.getElementById('articleInput').value = '';
+    document.getElementById('keywordsOutput').innerHTML = '';
+    document.getElementById('summaryOutput').innerText = '';
 });
