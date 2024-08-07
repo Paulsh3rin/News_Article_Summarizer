@@ -4,6 +4,7 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 from nltk.corpus import stopwords
 from nltk.tokenize import sent_tokenize, word_tokenize
+from collections import Counter
 
 # Uncomment these lines to download NLTK resources if not already done
 #nltk.download('punkt')
@@ -64,5 +65,4 @@ def extract_keywords_tfidf(text, num_keywords=4):
 def perform_summarization(text):
     summary = summarize_text(text)
     keywords = extract_keywords_tfidf(text)
-
     return summary, keywords
