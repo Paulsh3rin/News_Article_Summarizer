@@ -39,7 +39,13 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v3
 
-      - name: Deploy to Server
+      - name: Trigger Render Deployment
+        env:
+          RENDER_API_KEY: ${{}}
         run: |
-          echo "Deploying application..."
-          # Add your deployment script here
+          curl -X POST \
+          -H "Authorization: Bearer $RENDER_API_KEY" \
+          -H "Accept: application/json" \
+          -H "Content-Type: application/json" \
+          -d '{}' \
+          https://api.render.com/v1/services/{your-service-id}/deploys
