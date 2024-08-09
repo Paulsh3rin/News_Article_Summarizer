@@ -7,8 +7,8 @@ from nltk.tokenize import sent_tokenize, word_tokenize
 from collections import Counter
 
 # Uncomment these lines to download NLTK resources if not already done
-#nltk.download('punkt')
-#nltk.download('stopwords')
+nltk.download('punkt')
+nltk.download('stopwords')
 
 def preprocess_text(text):
     stop_words = set(stopwords.words('english'))
