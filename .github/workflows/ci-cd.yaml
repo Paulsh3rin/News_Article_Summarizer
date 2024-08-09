@@ -41,11 +41,11 @@ jobs:
 
       - name: Trigger Render Deployment
         env:
-          RENDER_API_KEY: ${{}}
+          RENDER_API_KEY: ${{ secrets.RENDER_API_KEY }}
         run: |
           curl -X POST \
           -H "Authorization: Bearer $RENDER_API_KEY" \
           -H "Accept: application/json" \
           -H "Content-Type: application/json" \
           -d '{}' \
-          https://api.render.com/v1/services/{your-service-id}/deploys
+          https://ai-2004-project.onrender.com
