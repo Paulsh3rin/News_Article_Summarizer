@@ -35,3 +35,9 @@ def test_perform_summarization():
     assert isinstance(summary, str)
     assert isinstance(keywords, list)
     assert len(keywords) > 0
+
+def test_flask_installed():
+    try:
+        import flask
+    except ImportError:
+        pytest.fail("Flask is not installed")
