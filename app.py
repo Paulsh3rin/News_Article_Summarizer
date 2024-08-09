@@ -35,12 +35,3 @@ logging.basicConfig(filename='error.log', level=logging.ERROR)
 def trigger_error():
     # This route is for testing purposes. It will raise an error and log it.
     raise Exception("This is a test error!")
-
-@app.route('/log_error')
-def log_error():
-    try:
-        # Code that might raise an exception
-        1 / 0  # This will raise a ZeroDivisionError
-    except Exception as e:
-        logging.error("An error occurred: %s", str(e))
-        return "An error was logged."
