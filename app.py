@@ -26,12 +26,3 @@ def summarize():
 if __name__ == '__main__':
     app.run(debug=True)
 
-import logging
-
-# Set up basic logging to log errors to 'error.log'
-logging.basicConfig(filename='error.log', level=logging.ERROR)
-
-@app.route('/error')
-def trigger_error():
-    # This route is for testing purposes. It will raise an error and log it.
-    raise Exception("This is a test error!")
