@@ -48,4 +48,4 @@ jobs:
           -H "Accept: application/json" \
           -H "Content-Type: application/json" \
           -d '{}' \
-          https://ai-2004-project.onrender.com
+          https://api.render.com/deploy/srv-cqqmbprqf0us739098ig?key=JosdKalGmDk
